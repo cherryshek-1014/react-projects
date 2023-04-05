@@ -10,37 +10,11 @@ const Dictionary = () => {
     const [displayText, setDisplayText] = useState("");
     const [searchList, setSearchList] = useState<string[]>([]);
 
-    const handleButtonClick = (e) => {
-        e.preventDefault();
-        setSearchList((prevTextList) => [inputText, ...prevTextList]);
-        setDisplayText(inputText);
-        setInputText("");
-    }
-
-    const jumpTo = (word) => {
-        const inputText = ''
-        setDisplayText(word);
-    }
-
-    const searchWord = searchList.map((searchText, index) => {
-        return (
-            <li key={index}>
-                <button onClick={() => jumpTo(searchText)}>{searchText}</button>
-            </li>
-        )
-    })
-
-
-    const handleOnChange = (event) => {
-        setInputText(event.target.value);
-    }
-
-
     return (
         <div className={styles.container}>
-            <History searchWord={searchWord} />
+            <History setDisplayText={setDisplayText} searchList={searchList} />
             <WordDefinition displayText={displayText} />
-            <Search inputText={inputText} handleButtonClick={handleButtonClick} handleOnChange={handleOnChange} />
+            <Search inputText={inputText} setInputText={setInputText} setSearchList={setSearchList} setDisplayText={setDisplayText} />
         </div >
     );
 }
