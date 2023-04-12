@@ -8,14 +8,11 @@ type Props = {
 }
 
 const History = ({ setDisplayText, searchList }: Props) => {
-    const jumpTo = (word) => {
-        setDisplayText(word);
-    }
 
-    const searchWord = searchList.map((searchText, index) => {
+    const searchedWords = searchList.map((searchText, index) => {
         return (
             <li key={index}>
-                <button onClick={() => jumpTo(searchText)}>{searchText}</button>
+                <button onClick={() => setDisplayText(searchText)}>{searchText}</button>
             </li>
         )
     })
@@ -23,7 +20,7 @@ const History = ({ setDisplayText, searchList }: Props) => {
         <div className={styles["history-col"]}>
             <p> Previous Searches </p>
             <ol>
-                {searchWord}
+                {searchedWords}
             </ol>
         </div>
     )
