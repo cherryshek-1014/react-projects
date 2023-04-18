@@ -7,7 +7,7 @@ type Props = {
     searchList: String[]
 }
 
-const History = ({ setDisplayText, searchList }: Props) => {
+const searchHistory = ({ setDisplayText, searchList }: Props) => {
 
     const searchedWords = searchList.map((searchText, index) => {
         return (
@@ -26,4 +26,4 @@ const History = ({ setDisplayText, searchList }: Props) => {
     )
 }
 
-export default History;
+export default searchHistory;
