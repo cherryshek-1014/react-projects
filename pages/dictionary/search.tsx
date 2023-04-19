@@ -3,16 +3,29 @@ import styles from '>>/styles/dictionary.module.css'
 
 type Props = {
     inputText: string,
-    handleButtonClick: (event) => void,
-    handleOnChange: () => void
+    setInputText: React.Dispatch<React.SetStateAction<string>>
+    setSearchList: React.Dispatch<React.SetStateAction<string[]>>
+    setDisplayText: React.Dispatch<React.SetStateAction<string>>
 }
 
-const Search = ({ inputText, handleButtonClick, handleOnChange }: Props) => {
+const Search = ({ inputText, setInputText, setSearchList, setDisplayText }: Props) => {
+
+    const handleButtonClick = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        event.preventDefault();
+        setSearchList((prevTextList) => [inputText, ...prevTextList]);
+        setDisplayText(inputText);
+        setInputText("");
+    }
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             handleButtonClick(event);
         }
     };
+
+
+    const handleOnChange = (event) => {
+        setInputText(event.target.value);
+    }
 
     return (
         <div className={styles["search-col"]} >
